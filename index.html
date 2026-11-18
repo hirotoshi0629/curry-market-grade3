@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff7e6">
+  <meta name="description" content="小学3年生向け。カレーの具材を英語で聞いて、選んで、買い物ごっこをしよう。">
+  <title>カレーをつくろう！</title>
+  <link rel="stylesheet" href="./styles.css?v=restaurant-studio-1">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="ホームへ"><span class="brand-mark">C</span><span>カレーをつくろう！<small>English Curry Market</small></span></a>
+    <div class="points" aria-live="polite" title="学習やお店づくりに使うコイン"><span class="coin-dot"></span><b id="points">0</b><span>コイン</span></div>
+  </header>
+
+  <main>
+    <section id="home" class="hero panel">
+      <div class="hero-copy">
+        <span class="eyebrow">WELCOME TO THE CURRY MARKET</span>
+        <h1>じぶんだけの<br>レストランをつくろう！</h1>
+        <p>英語を練習してコインを集め、お店を育てて飾ろう。</p>
+        <div class="hero-actions">
+          <button class="button primary" data-go="words">ことばを見てれんしゅう</button>
+          <button class="button secondary" data-go="listen">音を聞いてえらぶ</button>
+          <button class="button order-listen-launch" data-go="order-listen">聞き取りゲーム</button>
+          <button class="button roleplay-launch" data-go="roleplay">お店で会話しよう</button>
+          <button class="button town-launch" data-go="restaurant-workshop">お店をつくって飾る</button>
+        </div>
+      </div>
+      <figure class="hero-art"><img class="curry-plate-art" src="./assets/food-v3/beef-curry.webp" alt="色鉛筆と水彩画風のお皿に盛りつけたビーフカレー"></figure>
+      <div class="hero-note">お店を選んで、じぶんのアイデアで育てよう <span>● ● ●</span></div>
+    </section>
+
+    <section class="quick-stats" aria-label="学習の進み具合">
+      <div><span class="stat-icon stat-book"></span><b id="learnedCount">0</b><small>ことばに出会った</small></div>
+      <div><span class="stat-icon stat-ear"></span><b id="correctCount">0</b><small>聞き取り正解</small></div>
+      <div><span class="stat-icon stat-pot"></span><b id="ingredientCount">0</b><small>カレーの具材</small></div>
+    </section>
+
+
+    <section id="words" class="practice-section">
+      <div class="section-heading">
+        <div><span class="eyebrow">WORD CARDS</span><h2>カレーのことば</h2><p>絵を見て、お手本を聞いてみよう。</p></div>
+        <button class="button text-button" data-go="home">ホームへ</button>
+      </div>
+      <div class="word-practice-tools"><button id="startWordChallenge" class="button primary">聞き取りチャレンジ（10問）</button><span>録音はこの画面の中だけで再生できます。アプリには送信・保存されません。</span></div>
+      <div id="categories" class="category-list" role="group" aria-label="ことばのカテゴリー"></div>
+      <div class="word-toolbar"><span id="wordCount">48このことば</span><label class="toggle"><input id="showJapanese" type="checkbox" checked><span></span>日本語も表示</label></div>
+      <div id="wordGrid" class="word-grid"></div>
+    </section>
+
+    <section id="order-listen" class="order-listen-section panel" hidden>
+      <div class="section-heading">
+        <div><span class="eyebrow">ORDER LISTENING GAME</span><h2>注文内容を聞き取ろう</h2><p>お店の人の質問のあと、注文された品物を6つの絵から選ぼう。</p></div>
+        <button class="button text-button" data-go="home">ホームへ</button>
+      </div>
+      <div class="order-game-card">
+        <div class="quiz-top"><span id="orderRound">注文を聞こう</span><span>ポイント <b id="orderScore">0</b></span></div>
+        <div class="order-prompt"><span id="orderPromptEnglish">What do you want?</span><span id="orderPromptJapanese">何がほしいですか？</span></div>
+        <div class="order-audio-actions"><button id="playOrder" class="button sound-button"><span class="sound-icon"></span>もう一度聞く</button><button id="playOrderSlow" class="button sound-button"><span class="sound-icon"></span>ゆっくり聞く</button></div>
+        <p id="orderHint" class="order-hint">注文された品物をすべてタップしよう（1〜3こ）。</p>
+        <div id="orderChoices" class="quiz-choices order-choices"></div>
+        <div id="orderFeedback" class="feedback" aria-live="polite"></div>
+        <button id="checkOrder" class="button primary next-button">できた！答え合わせ</button>
+        <button id="nextOrder" class="button primary next-button" hidden>次の注文へ</button>
+      </div>
+    </section>
+
+    <section id="listen" class="listen-section panel">
+      <div class="section-heading">
+        <div><span class="eyebrow">LISTENING QUEST</span><h2>音を聞いて、絵をえらぼう</h2><p>英語を聞いて、同じ具材の絵をタップしよう。</p></div>
+        <button class="button text-button" data-go="home">ホームへ</button>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-top"><span id="quizProgress">チャレンジ 1</span><span>正解 <b id="quizScore">0</b></span></div>
+        <div class="quiz-question"><div id="quizArt" class="question-art"></div><button id="playQuestion" class="button sound-button"><span class="sound-icon"></span>もう一度聞く</button><p id="quizHint">音を聞いてから、絵をえらぼう。</p></div>
+        <div id="quizChoices" class="quiz-choices"></div>
+        <div id="quizFeedback" class="feedback" aria-live="polite"></div>
+        <button id="nextQuestion" class="button primary next-button" hidden>次のことばへ</button>
+      </div>
+    </section>
+
+    <section id="roleplay" class="roleplay-section panel">
+      <div class="section-heading">
+        <div><span class="eyebrow">SHOPPING ROLEPLAY</span><h2>お店で買い物ごっこ</h2><p>お客さん役・お店の人役をえらんで、会話してみよう。</p></div>
+        <button class="button text-button" data-go="home">ホームへ</button>
+      </div>
+      <div class="role-switch" role="group" aria-label="練習する役">
+        <button class="role-button active" data-role="customer">お客さん</button>
+        <button class="role-button" data-role="shopkeeper">お店の人</button>
+      </div>
+      <div class="market-card">
+        <div class="market-prompt"><span class="eyebrow">TODAY'S INGREDIENT</span><h3 id="marketItemName">にんじん</h3><div id="marketItemArt" class="market-item-art"></div><button id="changeMarketItem" class="button outline-button">品物をかえる</button></div>
+        <div class="dialogue-practice">
+          <div class="dialogue-progress"><span id="dialogueStep">会話 1 / 5</span><span id="dialogueRoleName">お客さん役</span></div>
+          <div class="dialogue-bubble"><span id="dialogueSpeaker">お店の人</span><p id="dialogueEnglish">What do you want?</p><small id="dialogueJapanese">何がほしいですか？</small></div>
+          <p id="dialogueInstruction" class="dialogue-instruction">お手本を聞いて、会話の流れをつかもう。</p>
+          <div class="dialogue-actions"><button id="dialogueListen" class="button sound-button"><span class="sound-icon"></span>もう一度聞く</button><button id="dialogueListenSlow" class="button sound-button"><span class="sound-icon"></span>ゆっくり聞く</button><button id="dialogueStartSpeech" class="button primary">🎤 マイクで話す</button><button id="dialogueFinishSpeech" class="button finish-button" disabled>話し終えた・判定する</button><button id="dialogueNext" class="button primary" disabled>正解したら次へ</button></div>
+          <p id="dialogueHeard" class="dialogue-heard" aria-live="polite" hidden></p>
+          <div id="dialogueFeedback" class="dialogue-feedback" aria-live="polite"></div>
+        </div>
+      </div>
+      <p class="roleplay-note">自分の番は画面のマイクを押して話そう。話し終えたら「話し終えた・判定する」を押してね。録音はアプリに保存しません。</p>
+    </section>
+
+    <section id="restaurant-workshop" class="restaurant-workshop panel" hidden>
+      <div class="section-heading">
+        <div><span class="eyebrow">MY RESTAURANT STORY</span><h2>じぶんだけのレストラン</h2><p>お店をひとつ選んで、家具や道具を自由に置き、少しずつ育てていこう。</p></div>
+        <button class="button text-button" data-go="home">ホームへ</button>
+      </div>
+      <div class="restaurant-summary"><strong>🪙 <b id="restaurantCoins">0</b> コイン</strong><span id="restaurantStageLabel">お店をえらぼう</span></div>
+      <div id="restaurantSetup" class="restaurant-setup">
+        <h3>最初のお店をひとつえらぼう</h3><p>選んだお店を、ここから自分らしく育てます。</p>
+        <div id="restaurantTypeChoices" class="restaurant-type-choices"></div>
+        <label class="restaurant-name-label" for="restaurantNameInput">お店の名前</label><input id="restaurantNameInput" class="restaurant-name-input" maxlength="20" placeholder="にじいろカレーやさん">
+        <button id="startRestaurant" class="button primary" disabled>このお店ではじめる</button>
+      </div>
+      <div id="restaurantStudio" class="restaurant-studio" hidden>
+        <div class="restaurant-story"><div><span id="restaurantTypeName"></span><h3 id="restaurantDisplayName"></h3><p id="restaurantStoryText"></p></div><button id="upgradeRestaurant" class="button primary"></button></div>
+        <div class="restaurant-room-wrap"><div id="restaurantRoom" class="restaurant-room" aria-label="自分のレストラン。家具をドラッグして配置できます"></div><p class="room-instructions">家具をつかんで好きな場所へ。選んだ家具は下のつまみで大きさを変えられるよ。</p></div>
+        <div id="selectedFurniture" class="selected-furniture" hidden><strong id="selectedFurnitureName"></strong><label>大きさ <input id="furnitureSize" type="range" min="9" max="36" value="18"> <span id="furnitureSizeLabel">18%</span></label><button id="storeFurniture" class="button outline-button">この家具をしまう</button></div>
+        <div class="restaurant-shop"><div class="shop-heading"><div><span class="eyebrow">FURNITURE & TOOLS</span><h3>お店のものを買って、置こう</h3></div><div id="shopCategories" class="shop-categories"></div></div><div id="furnitureShop" class="furniture-shop"></div></div>
+      </div>
+    </section>
+    <footer>カレーの具材を集めて、英語で伝えよう。<span>ひとつずつで大丈夫！</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js?v=restaurant-studio-1"></script>
+</body>
+</html>
